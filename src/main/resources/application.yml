@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  security:
+    user:
+      password: password
+  flyway:
+    out-of-order: true
+    baseline-on-migrate: true
+    baseline-version: 1
+management.endpoints.web.exposure.include: '*'
+--
+spring:
+  profiles: cloud
