@@ -12,6 +12,7 @@ spring:
     baseline-on-migrate: true
     baseline-version: 1
 management.endpoints.web.exposure.include: '*'
+endpoints:health:sensitive: false
 ---
 spring:
   profiles: cloud
