@@ -12,6 +12,6 @@ spring:
     baseline-on-migrate: true
     baseline-version: 1
 management.endpoints.web.exposure.include: '*'
---
+---
 spring:
   profiles: cloud
