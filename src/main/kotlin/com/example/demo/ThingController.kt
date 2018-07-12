@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController
 class ThingController(val thingRepository: ThingRepository) {
     @RequestMapping("/")
     fun index(): ResponseEntity<List<Thing>> {
-        thingRepository.save(Thing("name1", "name2"))
-        thingRepository.save(Thing("name3", "name2"))
         return ResponseEntity.ok(thingRepository.findAll().toMutableList())
     }
 }
