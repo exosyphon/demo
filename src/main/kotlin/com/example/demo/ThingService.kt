@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityManager
 
 @Service
-class ThingService(val entityManager: EntityManager, val thingRepository: ThingRepository, val itemWriter: ItemWriter<Thing>) {
+class ThingService(val entityManager: EntityManager, val thingRepository: ThingRepository, val itemWriter: ItemWriter<Thing>, val config : DataIngestConfig) {
 
     fun doThingsFaster() {
+        println(config.get("bob"))
+        println(config.get("tom"))
         var list = mutableListOf<Thing>()
         for (i in 0..500_000) {
             list.add(Thing("$i", "name $i"))
