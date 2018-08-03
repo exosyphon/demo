@@ -26,7 +26,7 @@ class DemoApplication {
         thingService.truncate()
         println("beginning")
         val time = System.currentTimeMillis()
-        thingService.doThingsFaster()
+        thingService.doThingsSlow()
         val time2 = System.currentTimeMillis()
         println("finished : ${time2 - time} MS")
     }
