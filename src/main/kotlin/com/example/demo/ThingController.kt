@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin
-class ThingController(val thingRepository: ThingRepository) {
+class ThingController(val thingRepository: BaseThingRepository<BaseThing>) {
     @RequestMapping("/")
-    fun index(): ResponseEntity<List<Thing>> {
+    fun index(): ResponseEntity<List<BaseThing>> {
         return ResponseEntity.ok(thingRepository.findAll().toMutableList())
     }
 }

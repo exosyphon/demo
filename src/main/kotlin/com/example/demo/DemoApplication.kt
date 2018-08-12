@@ -19,6 +19,13 @@ class DemoApplication {
 
     @Autowired
     private lateinit var resourceLoader: ResourceLoader
+    @Autowired
+    private lateinit var testingService: TestingService
+
+    @Bean
+    fun BaseThingRepository(): BaseThingRepository<*> {
+        return testingService.getBaseThingRepository(true)
+    }
 
     @Bean
     fun boot(thingService: ThingService) = CommandLineRunner {
