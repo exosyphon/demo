@@ -20,11 +20,11 @@ class DemoApplication {
     @Autowired
     private lateinit var resourceLoader: ResourceLoader
     @Autowired
-    private lateinit var testingService: TestingService
+    private lateinit var thingRepository: ThingRepository
 
     @Bean
     fun BaseThingRepository(): BaseThingRepository<*> {
-        return testingService.getBaseThingRepository(true)
+        return thingRepository
     }
 
     @Bean

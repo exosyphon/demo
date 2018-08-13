@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @Profile("local")
-class ReplaceRepoController(val testingService: TestingService) {
+class ReplaceRepoController {
     @Autowired
     private lateinit var context: ConfigurableApplicationContext
+
+    @Autowired
+    private lateinit var otherThingRepository: OtherThingRepository
 
     @RequestMapping("/change")
     fun change(): ResponseEntity<String> {
         val beanFactory = context.beanFactory as BeanDefinitionRegistry
         beanFactory.removeBeanDefinition("BaseThingRepository")
 
-        val newBean = testingService.getBaseThingRepository(false)
-        context.beanFactory.registerSingleton("BaseThingRepository", newBean)
+        context.beanFactory.registerSingleton("BaseThingRepository", otherThingRepository)
 
         return ResponseEntity.ok("Success")
     }
