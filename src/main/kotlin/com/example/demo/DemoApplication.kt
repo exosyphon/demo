@@ -13,6 +13,9 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.core.io.ResourceLoader
 import javax.sql.DataSource
+import org.springframework.web.client.RestTemplate
+
+
 
 @SpringBootApplication
 class DemoApplication {
@@ -54,6 +57,10 @@ class DemoApplication {
         return writer
     }
 
+    @Bean
+    fun restTemplate(): RestTemplate {
+        return RestTemplate()
+    }
 }
 
 fun main(args: Array<String>) {
