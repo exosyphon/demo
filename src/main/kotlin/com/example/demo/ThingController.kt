@@ -1,14 +1,14 @@
 package com.example.demo
 
-import org.springframework.http.*
+import org.springframework.core.ParameterizedTypeReference
+import org.springframework.http.HttpMethod
+import org.springframework.http.ResponseEntity
+import org.springframework.http.client.support.BasicAuthorizationInterceptor
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.client.exchange
-import org.springframework.web.util.UriComponentsBuilder
-import org.springframework.http.client.support.BasicAuthorizationInterceptor
 
 @RestController
 @CrossOrigin
@@ -20,19 +20,23 @@ class ThingController(val thingRepository: BaseThingRepository<BaseThing>, val r
     }
 
     @GetMapping("/herp/derp")
-    fun callAnotherController(): DataResponse {
-//        restTemplate.interceptors.add(
-//                BasicAuthorizationInterceptor("user", "password"))
+    fun callAnotherController(): List<BadDataParsed> {
+        restTemplate.interceptors.add(
+                BasicAuthorizationInterceptor("user", "password"))
 
-        val builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/internal")
+        var response: ResponseEntity<List<BadDataParsed>>
+        try {
+            response = restTemplate.exchange(
+                    "http://localhost:8080/internal",
+                    HttpMethod.GET,
+                    null,
+                    object : ParameterizedTypeReference<List<BadDataParsed>>() {}
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return emptyList()
+        }
 
-        val response: ResponseEntity<DataResponse> = restTemplate.exchange(
-                builder.toUriString(),
-                HttpMethod.GET,
-                null,
-                DataResponse::class
-        )
-
-        return response.body!!
+        return response?.body!!
     }
 }

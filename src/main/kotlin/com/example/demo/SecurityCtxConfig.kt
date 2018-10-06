@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 class SecurityCtxConfig : WebSecurityConfigurerAdapter() {
     override fun configure(web: WebSecurity) {
-        web.ignoring()
-                .antMatchers(HttpMethod.GET,
-                        "/internal")
+//        web.ignoring()
+//                .antMatchers(HttpMethod.GET,
+//                        "/internal")
     }
 }

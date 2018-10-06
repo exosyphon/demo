@@ -9,11 +9,22 @@ import org.springframework.web.bind.annotation.RestController
 class InternalController() {
 
     @GetMapping("/internal")
-    fun internalRoute(): DataResponse {
-        return DataResponse("bob dylan")
+    fun internalRoute(): List<BadDataResponse> {
+        var list = mutableListOf<BadDataResponse>()
+        for (x in 1..10000) {
+            list.add(BadDataResponse("hello", "kitty"))
+        }
+
+        return list
     }
 }
 
-data class DataResponse(
-        val data: String
+data class BadDataResponse(
+        val data: String,
+        val tom: String?
+)
+
+data class BadDataParsed(
+        val data: String,
+        val tom: String
 )

@@ -32,13 +32,13 @@ class DemoApplication {
 
     @Bean
     fun boot(thingService: ThingService) = CommandLineRunner {
-        println("truncating")
-        thingService.truncate()
-        println("beginning")
-        val time = System.currentTimeMillis()
-        thingService.doThingsSlow()
-        val time2 = System.currentTimeMillis()
-        println("finished : ${time2 - time} MS")
+//        println("truncating")
+//        thingService.truncate()
+//        println("beginning")
+//        val time = System.currentTimeMillis()
+//        thingService.doThingsSlow()
+//        val time2 = System.currentTimeMillis()
+//        println("finished : ${time2 - time} MS")
     }
 
     @Bean
